@@ -41,26 +41,9 @@ def clean_html(raw_text: str) -> str:
 
 
 def extract_sections(text: str) -> dict:
-    """
-    Extracts key sections from a 10-Q filing.
-    We focus on the most valuable sections for financial analysis.
-
-    Sections we extract:
-    - MD&A: Management Discussion & Analysis (most valuable)
-    - Risk Factors: What could go wrong
-    - Financial Statements: Numbers
-
-    Args:
-        text: Clean plain text of filing
-
-    Returns:
-        Dictionary of section name -> section text
-    """
     logger.debug("Extracting sections from filing")
-
     sections = {}
 
-    # Key sections we want to find
     section_patterns = {
         "mdna": [
             r"management.{0,10}discussion.{0,10}analysis",
@@ -80,18 +63,30 @@ def extract_sections(text: str) -> dict:
     }
 
     text_lower = text.lower()
+    found_positions = []
 
     for section_name, patterns in section_patterns.items():
         for pattern in patterns:
-            match = re.search(pattern, text_lower)
-            if match:
-                # Extract text starting from where section begins
+            matches = list(re.finditer(pattern, text_lower))
+            if matches:
+                # Skip first match (table of contents)
+                # Use second match which is actual content
+                match = matches[1] if len(matches) > 1 else matches[0]
                 start = match.start()
-                # Take next 5000 characters as section content
-                section_text = text[start:start + 5000]
-                sections[section_name] = section_text
-                logger.debug(f"Found section: {section_name}")
+                found_positions.append((start, section_name))
                 break
+
+    # Sort sections by position in document
+    found_positions.sort(key=lambda x: x[0])
+
+    for i, (start, section_name) in enumerate(found_positions):
+        # End at next section start or 15000 chars
+        end = found_positions[i + 1][0] if i + 1 < len(found_positions) else start + 15000
+        end = min(end, start + 15000)
+        section_text = text[start:end]
+        sections[section_name] = section_text
+        logger.debug(f"Found section: {section_name} | "
+                    f"length: {len(section_text)} chars")
 
     logger.debug(f"Extracted {len(sections)} sections")
     return sections
