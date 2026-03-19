@@ -195,10 +195,10 @@ if __name__ == "__main__":
 
     if filings:
         chunks = parse_filing(filings[0])
-        print(f"\n✅ Successfully parsed filing")
+        print(f"\n Successfully parsed filing")
         print(f"   Total chunks created: {len(chunks)}")
         print(f"\n--- Sample chunk ---")
         print(f"Text: {chunks[0]['text'][:200]}...")
         print(f"Metadata: {chunks[0]['metadata']}")
     else:
-        print("❌ No filings to parse")
+        print(" No filings to parse")

@@ -164,8 +164,8 @@ if __name__ == "__main__":
     filings = fetch_company_filings("AAPL", quarters=2)
     
     if filings:
-        print(f"\n✅ Successfully fetched {len(filings)} filings")
+        print(f"\n Successfully fetched {len(filings)} filings")
         for f in filings:
             print(f"  - {f['form_type']} filed on {f['filed_date']} | text length: {len(f['text'])} chars")
     else:
-        print("❌ No filings fetched")
+        print(" No filings fetched")

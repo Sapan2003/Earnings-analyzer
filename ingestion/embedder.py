@@ -155,7 +155,7 @@ def get_collection_stats():
     collection = get_collection(client)
     count = collection.count()
     logger.info(f"ChromaDB collection has {count} chunks")
-    print(f"\n📊 ChromaDB Stats:")
+    print(f"\n ChromaDB Stats:")
     print(f"   Collection: {COLLECTION_NAME}")
     print(f"   Total chunks stored: {count}")
     return count
@@ -163,7 +163,7 @@ def get_collection_stats():
 
 if __name__ == "__main__":
     # Test - embed Apple filings
-    print("🚀 Starting embedding pipeline for AAPL...")
+    print(" Starting embedding pipeline for AAPL...")
     total = embed_company("AAPL", quarters=2)
-    print(f"\n✅ Embedding complete!")
+    print(f"\n Embedding complete!")
     get_collection_stats()
