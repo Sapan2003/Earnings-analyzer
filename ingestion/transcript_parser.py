@@ -185,20 +185,23 @@ def parse_filing(filing: dict) -> list:
 
 
 if __name__ == "__main__":
-    # Test with real Apple data
+    import sys
     from ingestion.sec_fetcher import fetch_company_filings
 
-    logger.info("Testing transcript parser with AAPL data")
+    if len(sys.argv) < 2:
+        print("Usage: python -m ingestion.transcript_parser <TICKER>")
+        print("Example: python -m ingestion.transcript_parser AAPL")
+        sys.exit(1)
 
-    # Fetch 1 filing to test
-    filings = fetch_company_filings("AAPL", quarters=1)
+    ticker = sys.argv[1].upper()
+    filings = fetch_company_filings(ticker, quarters=1)
 
     if filings:
         chunks = parse_filing(filings[0])
-        print(f"\n Successfully parsed filing")
-        print(f"   Total chunks created: {len(chunks)}")
-        print(f"\n--- Sample chunk ---")
-        print(f"Text: {chunks[0]['text'][:200]}...")
+        print(f"Successfully parsed filing for {ticker}")
+        print(f"Filing date: {filings[0]['filed_date']}")
+        print(f"Total chunks created: {len(chunks)}")
+        print(f"Sample text: {chunks[0]['text'][:200]}")
         print(f"Metadata: {chunks[0]['metadata']}")
     else:
-        print(" No filings to parse")
+        print(f"No filings found for {ticker}")

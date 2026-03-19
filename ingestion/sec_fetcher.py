@@ -160,12 +160,14 @@ def fetch_company_filings(ticker: str, quarters: int = 8) -> list:
 
 
 if __name__ == "__main__":
-    # Quick test - fetch Apple filings
-    filings = fetch_company_filings("AAPL", quarters=2)
-    
+    import sys
+    ticker = sys.argv[1] if len(sys.argv) > 1 else "AAPL"
+    quarters = int(sys.argv[2]) if len(sys.argv) > 2 else 2
+    filings = fetch_company_filings(ticker, quarters=quarters)
     if filings:
-        print(f"\n Successfully fetched {len(filings)} filings")
+        print(f"Successfully fetched {len(filings)} filings for {ticker}")
         for f in filings:
-            print(f"  - {f['form_type']} filed on {f['filed_date']} | text length: {len(f['text'])} chars")
+            print(f"  - {f['form_type']} filed on {f['filed_date']} | "
+                  f"text length: {len(f['text'])} chars")
     else:
-        print(" No filings fetched")
+        print(f"No filings fetched for {ticker}")

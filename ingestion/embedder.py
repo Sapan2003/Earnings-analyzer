@@ -162,8 +162,17 @@ def get_collection_stats():
 
 
 if __name__ == "__main__":
-    # Test - embed Apple filings
-    print(" Starting embedding pipeline for AAPL...")
-    total = embed_company("AAPL", quarters=2)
-    print(f"\n Embedding complete!")
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python -m ingestion.embedder <TICKER> <QUARTERS>")
+        print("Example: python -m ingestion.embedder AAPL 8")
+        sys.exit(1)
+
+    ticker = sys.argv[1].upper()
+    quarters = int(sys.argv[2]) if len(sys.argv) > 2 else 2
+
+    print(f"Starting embedding pipeline for {ticker}...")
+    total = embed_company(ticker, quarters=quarters)
+    print(f"Embedding complete! Total chunks embedded: {total}")
     get_collection_stats()
