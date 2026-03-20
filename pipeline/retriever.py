@@ -31,7 +31,7 @@ def get_collection():
 
 
 def retrieve_chunks(question: str, ticker: str = None,
-                    filed_date: str = None, k: int = 4) -> list:
+                    filed_date: str = None, k: int = 4, collection=None) -> list:
     """
     Searches ChromaDB for chunks most relevant to the question.
 
@@ -51,7 +51,8 @@ def retrieve_chunks(question: str, ticker: str = None,
     logger.info(f"Retrieving chunks | question='{question}' | "
                 f"ticker={ticker} | k={k}")
 
-    collection = get_collection()
+    if collection is None:
+        collection = get_collection()
 
     # Build metadata filter if ticker provided
     where_filter = None
