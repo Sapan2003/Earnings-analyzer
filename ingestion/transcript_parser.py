@@ -5,35 +5,103 @@ from utils.logger import get_logger
 logger = get_logger("transcript_parser", "ingestion.log")
 
 
+def extract_financial_tables(soup) -> str:
+    """
+    Extracts financial tables from SEC filing HTML.
+    Converts HTML tables to readable text format
+    so numbers stay connected to their labels.
+
+    This is critical for capturing specific revenue
+    figures like "Microsoft Cloud revenue | $38.9B"
+    that get lost when we strip HTML naively.
+
+    Args:
+        soup: BeautifulSoup object of filing HTML
+
+    Returns:
+        String of all financial tables in readable format
+    """
+    tables_text = []
+    tables = soup.find_all("table")
+
+    for table in tables:
+        rows = table.find_all("tr")
+
+        # Skip tiny tables (navigation, headers etc)
+        if len(rows) < 3:
+            continue
+
+        table_lines = []
+        for row in rows:
+            cells = row.find_all(["td", "th"])
+            if not cells:
+                continue
+
+            cell_texts = []
+            for cell in cells:
+                text = cell.get_text(strip=True)
+                # Clean up common formatting artifacts
+                text = re.sub(r'\s+', ' ', text).strip()
+                if text:
+                    cell_texts.append(text)
+
+            # Only keep rows with actual content
+            if len(cell_texts) >= 2:
+                table_lines.append(" | ".join(cell_texts))
+
+        # Only keep tables with enough meaningful rows
+        if len(table_lines) >= 3:
+            tables_text.append("\n".join(table_lines))
+
+    result = "\n\n---TABLE---\n\n".join(tables_text)
+    logger.debug(f"Extracted {len(tables_text)} financial tables")
+    return result
+
+
 def clean_html(raw_text: str) -> str:
     """
-    Removes HTML tags from raw SEC filing text.
-    SEC filings come as HTML files - we need plain text.
+    Cleans HTML and preserves financial table data.
+
+    Two-pass approach:
+    1. Extract financial tables BEFORE stripping HTML
+       so numbers stay connected to their labels
+    2. Extract narrative text separately
+    3. Combine both for complete coverage
 
     Args:
         raw_text: Raw HTML content from SEC filing
 
     Returns:
-        Clean plain text
+        Clean text with financial tables preserved
     """
     logger.debug("Cleaning HTML from filing text")
 
     try:
         soup = BeautifulSoup(raw_text, "html.parser")
 
-        # Remove script and style tags completely
+        # Pass 1 - Extract tables BEFORE stripping HTML
+        tables_text = extract_financial_tables(soup)
+
+        # Pass 2 - Remove script and style tags
         for tag in soup(["script", "style", "head"]):
             tag.decompose()
 
-        # Get plain text
-        text = soup.get_text(separator=" ")
+        # Get narrative plain text
+        narrative_text = soup.get_text(separator=" ")
+        narrative_text = re.sub(r'\s+', ' ', narrative_text)
+        narrative_text = narrative_text.strip()
 
-        # Clean up whitespace
-        text = re.sub(r'\s+', ' ', text)
-        text = text.strip()
+        # Combine narrative + tables
+        if tables_text:
+            combined = (narrative_text +
+                       "\n\nFINANCIAL TABLES:\n" +
+                       tables_text)
+        else:
+            combined = narrative_text
 
-        logger.debug(f"Cleaned text length: {len(text)} chars")
-        return text
+        logger.debug(f"Cleaned text length: {len(combined)} chars "
+                    f"(narrative + {len(tables_text)} chars tables)")
+        return combined
 
     except Exception as e:
         logger.error(f"Failed to clean HTML: {e}")
@@ -41,6 +109,15 @@ def clean_html(raw_text: str) -> str:
 
 
 def extract_sections(text: str) -> dict:
+    """
+    Extracts key sections from a 10-Q or 10-K filing.
+
+    Args:
+        text: Clean plain text of filing
+
+    Returns:
+        Dictionary of section name -> section text
+    """
     logger.debug("Extracting sections from filing")
     sections = {}
 
@@ -80,26 +157,34 @@ def extract_sections(text: str) -> dict:
     found_positions.sort(key=lambda x: x[0])
 
     for i, (start, section_name) in enumerate(found_positions):
-        # End at next section start or 15000 chars
-        end = found_positions[i + 1][0] if i + 1 < len(found_positions) else start + 15000
-        end = min(end, start + 15000)
+        # End at next section start or 25000 chars
+        end = (found_positions[i + 1][0]
+               if i + 1 < len(found_positions)
+               else start + 25000)
+        end = min(end, start + 25000)
         section_text = text[start:end]
         sections[section_name] = section_text
         logger.debug(f"Found section: {section_name} | "
                     f"length: {len(section_text)} chars")
 
+    # Also extract financial tables section separately
+    # Tables are appended at end of clean_html output
+    if "FINANCIAL TABLES:" in text:
+        tables_start = text.index("FINANCIAL TABLES:")
+        tables_text = text[tables_start:]
+        sections["financial_tables"] = tables_text
+        logger.debug(f"Added financial tables section | "
+                    f"length: {len(tables_text)} chars")
+
     logger.debug(f"Extracted {len(sections)} sections")
     return sections
 
 
-def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> list:
+def chunk_text(text: str,
+               chunk_size: int = 500,
+               overlap: int = 50) -> list:
     """
     Splits text into overlapping chunks for embedding.
-
-    Why chunking?
-    - LLMs have token limits - can't process 800k chars at once
-    - Smaller chunks = more precise retrieval
-    - Overlap ensures context isn't lost at chunk boundaries
 
     Args:
         text: Plain text to chunk
@@ -109,7 +194,8 @@ def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> list:
     Returns:
         List of text chunks
     """
-    logger.debug(f"Chunking text | chunk_size={chunk_size} | overlap={overlap}")
+    logger.debug(f"Chunking text | chunk_size={chunk_size} | "
+                f"overlap={overlap}")
 
     words = text.split()
     chunks = []
@@ -119,10 +205,10 @@ def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> list:
         end = start + chunk_size
         chunk = " ".join(words[start:end])
         chunks.append(chunk)
-        # Move forward by chunk_size minus overlap
         start += chunk_size - overlap
 
-    logger.debug(f"Created {len(chunks)} chunks from {len(words)} words")
+    logger.debug(f"Created {len(chunks)} chunks from "
+                f"{len(words)} words")
     return chunks
 
 
@@ -144,17 +230,19 @@ def parse_filing(filing: dict) -> list:
     filed_date = filing.get("filed_date", "UNKNOWN")
     form_type = filing.get("form_type", "10-Q")
 
-    logger.info(f"Parsing filing | ticker={ticker} | date={filed_date}")
+    logger.info(f"Parsing filing | ticker={ticker} | "
+               f"date={filed_date} | type={form_type}")
 
-    # Step 1 - Clean HTML
+    # Step 1 - Clean HTML and extract tables
     clean_text = clean_html(filing["text"])
 
     # Step 2 - Extract key sections
     sections = extract_sections(clean_text)
 
-    # If no sections found fall back to full text
+    # Fallback to full text if no sections found
     if not sections:
-        logger.warning(f"No sections found for {ticker} {filed_date} - using full text")
+        logger.warning(f"No sections found for {ticker} "
+                      f"{filed_date} - using full text")
         sections = {"full_text": clean_text}
 
     # Step 3 - Chunk each section
@@ -175,7 +263,8 @@ def parse_filing(filing: dict) -> list:
                 }
             })
 
-    logger.info(f"Parsed {len(all_chunks)} chunks for {ticker} {filed_date}")
+    logger.info(f"Parsed {len(all_chunks)} chunks for "
+               f"{ticker} {filed_date}")
     return all_chunks
 
 
@@ -195,8 +284,10 @@ if __name__ == "__main__":
         chunks = parse_filing(filings[0])
         print(f"Successfully parsed filing for {ticker}")
         print(f"Filing date: {filings[0]['filed_date']}")
+        print(f"Form type: {filings[0]['form_type']}")
         print(f"Total chunks created: {len(chunks)}")
+        print(f"Sections found: "
+              f"{set(c['metadata']['section'] for c in chunks)}")
         print(f"Sample text: {chunks[0]['text'][:200]}")
-        print(f"Metadata: {chunks[0]['metadata']}")
     else:
         print(f"No filings found for {ticker}")

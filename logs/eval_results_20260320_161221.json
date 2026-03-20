@@ -1,0 +1,94 @@
+{
+  "timestamp": "2026-03-20T16:12:21.896887",
+  "total_questions": 5,
+  "passed": 5,
+  "failed": 0,
+  "accuracy": 100.0,
+  "avg_response_time": 12.6,
+  "category_breakdown": {
+    "Revenue": {
+      "passed": 3,
+      "total": 3
+    },
+    "Profitability": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "results": [
+    {
+      "id": 1,
+      "category": "Revenue",
+      "question": "What was Apple's total revenue in Q1 2026?",
+      "answer": "Based on my search through Apple's SEC filings, I found Apple's Q1 2026 total revenue information.\n\n**Apple's Total Revenue in Q1 2026: $143,756 million (approximately $143.8 billion)**\n\nAccording to Apple's Q1 2026 Form 10-Q filing dated January 30, 2026, the company reported total net sales of $14...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "143",
+        "billion",
+        "2026"
+      ],
+      "missing_keywords": [],
+      "response_time": 13.42
+    },
+    {
+      "id": 2,
+      "category": "Revenue",
+      "question": "How did Apple's revenue compare between Q3 2025 and Q1 2026?",
+      "answer": "Based on the SEC filings, I can provide a comparison of Apple's revenue between Q3 2025 and Q1 2026:\n\n## Apple Revenue Comparison: Q3 2025 vs Q1 2026\n\n**Q1 2026 (ended December 27, 2025):**\n- **Total net sales: $143.756 billion**\n\n**Q3 2025 (ended June 28, 2025):**\n- **Total net sales: $94.036 billi...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "94",
+        "143",
+        "growth"
+      ],
+      "missing_keywords": [],
+      "response_time": 10.13
+    },
+    {
+      "id": 3,
+      "category": "Revenue",
+      "question": "What were Apple's Services revenue figures in recent quarters?",
+      "answer": "Based on my search through Apple's SEC filings, here are Apple's Services revenue figures for recent quarters:\n\n## Apple Services Revenue - Recent Quarters\n\n**Source: Apple SEC Filings (10-Q forms)**\n\n### Q1 2026 (Quarter ended December 27, 2025):\n- **Services Revenue: $30.013 billion**\n- Year-over-...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "services",
+        "billion"
+      ],
+      "missing_keywords": [],
+      "response_time": 20.31
+    },
+    {
+      "id": 4,
+      "category": "Profitability",
+      "question": "What is Apple's current profit margin?",
+      "answer": "Based on the live financial data, Apple's current profit margin is **27.04%** (trailing twelve months).\n\nThis is an excellent profit margin, indicating that Apple retains about 27 cents of profit for every dollar of revenue. For context, this places Apple among the most profitable companies in the w...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "27",
+        "margin",
+        "%"
+      ],
+      "missing_keywords": [],
+      "response_time": 14.04
+    },
+    {
+      "id": 5,
+      "category": "Profitability",
+      "question": "What is Apple's gross margin?",
+      "answer": "Based on the live financial data, **Apple's gross margin is 47.33%** (trailing twelve months).\n\nThis means that for every dollar of revenue Apple generates, it retains approximately 47 cents after accounting for the direct costs of producing its products and services. This is a strong gross margin t...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "47",
+        "gross",
+        "margin"
+      ],
+      "missing_keywords": [],
+      "response_time": 5.12
+    }
+  ]
+}

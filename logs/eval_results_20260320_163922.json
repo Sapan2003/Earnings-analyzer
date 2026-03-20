@@ -1,0 +1,337 @@
+{
+  "timestamp": "2026-03-20T16:39:22.413797",
+  "total_questions": 20,
+  "passed": 19,
+  "failed": 1,
+  "accuracy": 95.0,
+  "avg_response_time": 33.16,
+  "category_breakdown": {
+    "Revenue": {
+      "passed": 3,
+      "total": 3
+    },
+    "Profitability": {
+      "passed": 3,
+      "total": 3
+    },
+    "Valuation": {
+      "passed": 3,
+      "total": 3
+    },
+    "Segments": {
+      "passed": 2,
+      "total": 3
+    },
+    "Geographic": {
+      "passed": 2,
+      "total": 2
+    },
+    "Strategy": {
+      "passed": 2,
+      "total": 2
+    },
+    "Trends": {
+      "passed": 2,
+      "total": 2
+    },
+    "Investment": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "results": [
+    {
+      "id": 1,
+      "category": "Revenue",
+      "question": "What was Apple's total revenue in Q1 2026?",
+      "answer": "Based on the SEC filing search results, I can see Apple's Q1 2026 financial information. According to **Source 1: AAPL 2026-01-30 10-Q filing**, Apple's total net sales (revenue) for Q1 2026 was **$143,756 million** (or **$143.8 billion**).\n\nThis information comes from Apple's official 10-Q filing d...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "143",
+        "billion",
+        "2026"
+      ],
+      "missing_keywords": [],
+      "response_time": 14.87
+    },
+    {
+      "id": 2,
+      "category": "Revenue",
+      "question": "How did Apple's revenue compare between Q3 2025 and Q1 2026?",
+      "answer": "Based on the SEC filings data I retrieved, here's how Apple's revenue compared between Q3 2025 and Q1 2026:\n\n## Apple Revenue Comparison: Q3 2025 vs Q1 2026\n\n**Q3 2025 (ended June 28, 2025):**\n- Total net sales: **$94.036 billion**\n\n**Q1 2026 (ended December 27, 2025):**\n- Total net sales: **$143.75...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "94",
+        "143",
+        "growth"
+      ],
+      "missing_keywords": [],
+      "response_time": 15.89
+    },
+    {
+      "id": 3,
+      "category": "Revenue",
+      "question": "What were Apple's Services revenue figures in recent quarters?",
+      "answer": "Based on my search through Apple's SEC filings, here are Apple's Services revenue figures for recent quarters:\n\n## Apple Services Revenue - Recent Quarters\n\n**Source: Apple SEC Filings (10-Q Forms)**\n\n### Most Recent Quarters:\n\n**Q1 2026 (ended December 27, 2025):**\n- **Services Revenue: $30.013 bil...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "services",
+        "billion"
+      ],
+      "missing_keywords": [],
+      "response_time": 22.64
+    },
+    {
+      "id": 4,
+      "category": "Profitability",
+      "question": "What is Apple's current profit margin?",
+      "answer": "Based on the live financial data, **Apple's current profit margin is 27.04%** (trailing twelve months).\n\nThis is an exceptionally strong profit margin, indicating that Apple retains about 27 cents of profit for every dollar of revenue generated. For context:\n- Apple's gross margin is 47.33%\n- The co...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "27",
+        "margin",
+        "%"
+      ],
+      "missing_keywords": [],
+      "response_time": 19.02
+    },
+    {
+      "id": 5,
+      "category": "Profitability",
+      "question": "What is Apple's gross margin?",
+      "answer": "Based on the live financial data, **Apple's gross margin is 47.33%** (trailing twelve months).\n\nThis means that for every dollar of revenue Apple generates, they retain about 47 cents after accounting for the direct costs of producing their products (cost of goods sold). This is a strong gross margi...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "47",
+        "gross",
+        "margin"
+      ],
+      "missing_keywords": [],
+      "response_time": 5.37
+    },
+    {
+      "id": 6,
+      "category": "Profitability",
+      "question": "How much free cash flow does Apple generate?",
+      "answer": "Based on the SEC filings data I found, here's Apple's free cash flow generation:\n\n## Apple's Free Cash Flow Generation\n\n**Source: Apple SEC filings (10-Q forms)**\n\n### Most Recent 9-Month Period (Fiscal 2025, ended June 28, 2025):\n- **Operating Cash Flow**: $81,754 million ($81.8 billion)\n- **Capita...",
+      "passed": true,
+      "score": 0.67,
+      "found_keywords": [
+        "cash",
+        "billion"
+      ],
+      "missing_keywords": [
+        "106"
+      ],
+      "response_time": 33.18
+    },
+    {
+      "id": 7,
+      "category": "Valuation",
+      "question": "What is Apple's current P/E ratio?",
+      "answer": "Apple's current P/E ratio (Price-to-Earnings ratio based on trailing twelve months) is **31.43**.\n\nAdditionally, Apple's forward P/E ratio is 26.61, which is based on expected future earnings rather than historical earnings. This suggests that analysts expect Apple's earnings to grow, as the forward...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "31",
+        "pe",
+        "ratio"
+      ],
+      "missing_keywords": [],
+      "response_time": 14.98
+    },
+    {
+      "id": 8,
+      "category": "Valuation",
+      "question": "What is the analyst price target for Apple?",
+      "answer": "According to the live financial data, **Apple (AAPL) has an analyst price target of $295.44** with a **BUY recommendation**.\n\nThis represents a potential upside of approximately 19.1% from the current stock price of $247.99. The stock is currently trading below both the analyst target and its 52-wee...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "295",
+        "target",
+        "analyst"
+      ],
+      "missing_keywords": [],
+      "response_time": 5.64
+    },
+    {
+      "id": 9,
+      "category": "Valuation",
+      "question": "What is Apple's market capitalization?",
+      "answer": "Apple's current market capitalization is **$3,644.94 billion** ($3.64 trillion).\n\nThis information is sourced from live financial data as of the current market conditions. Apple maintains one of the largest market capitalizations among all publicly traded companies globally.",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "3",
+        "trillion",
+        "market cap"
+      ],
+      "missing_keywords": [],
+      "response_time": 4.74
+    },
+    {
+      "id": 10,
+      "category": "Segments",
+      "question": "How did iPhone sales perform in Q1 2026?",
+      "answer": "Based on the SEC filings data, here's how iPhone sales performed in Q1 2026:\n\n## iPhone Sales Performance - Q1 2026\n\n**Source: Apple Inc. Q1 2026 Form 10-Q**\n\n### Revenue Performance\n- **iPhone revenue:** $85,269 million in Q1 2026\n- **Comparison:** vs. $69,138 million in Q1 2025 \n- **Growth:** +23%...",
+      "passed": false,
+      "score": 0.5,
+      "found_keywords": [
+        "iphone"
+      ],
+      "missing_keywords": [
+        "billion"
+      ],
+      "response_time": 11.98
+    },
+    {
+      "id": 11,
+      "category": "Segments",
+      "question": "What was Apple's Mac revenue in recent quarters?",
+      "answer": "Based on the SEC filings I've found, here's Apple's Mac revenue performance for recent quarters:\n\n## Apple Mac Revenue - Recent Quarters\n\n**Source: Apple SEC filings (10-Q reports)**\n\n### Q1 2026 (ended December 27, 2025):\n- Mac revenue: **$8.386 billion**\n- Year-over-year change: **-7%** (compared ...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "mac",
+        "billion"
+      ],
+      "missing_keywords": [],
+      "response_time": 30.94
+    },
+    {
+      "id": 12,
+      "category": "Segments",
+      "question": "How has Apple's Services segment grown?",
+      "answer": "Based on the SEC filings data I've analyzed, here's how Apple's Services segment has grown:\n\n## Apple Services Segment Growth Analysis\n\n**Recent Quarterly Performance:**\n\n### Q1 2026 (ended December 27, 2025)\n- **Services Revenue:** $30.013 billion\n- **Year-over-Year Growth:** 14% (vs. $26.340 billi...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "services",
+        "growth"
+      ],
+      "missing_keywords": [],
+      "response_time": 56.03
+    },
+    {
+      "id": 13,
+      "category": "Geographic",
+      "question": "How did Apple perform in Japan in Q1 2026?",
+      "answer": "Based on the information from Apple's SEC filings, I can provide you with details about Apple's performance in Japan during Q1 2026:\n\n## Apple's Japan Performance in Q1 2026\n\n**Source: Apple Inc. Q1 2026 Form 10-Q (filed January 30, 2026)**\n\n### Key Finding:\n\nApple's Japan segment experienced **favo...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "japan",
+        "2026"
+      ],
+      "missing_keywords": [],
+      "response_time": 48.21
+    },
+    {
+      "id": 14,
+      "category": "Geographic",
+      "question": "What happened to Apple's Asia Pacific sales?",
+      "answer": "Based on the SEC filings I found, here's what happened to Apple's Asia Pacific sales:\n\n## Apple's Asia Pacific Sales Performance\n\n**Source: Apple SEC filings (10-Q forms for Q3 2025 and Q1 2026)**\n\nApple's Asia Pacific region consists of three segments: **Greater China, Japan, and Rest of Asia Pacif...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "asia",
+        "pacific"
+      ],
+      "missing_keywords": [],
+      "response_time": 69.94
+    },
+    {
+      "id": 15,
+      "category": "Strategy",
+      "question": "What are the main risk factors Apple mentioned?",
+      "answer": "Based on my search through Apple's SEC filings, here are the main risk factors Apple has mentioned:\n\n## Apple's Main Risk Factors (According to SEC Filings)\n\n### 1. **Trade and Tariff Risks**\n**Source: AAPL 10-Q filings**\n- New tariffs imposed on imports to the U.S., including additional tariffs on ...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "risk"
+      ],
+      "missing_keywords": [],
+      "response_time": 96.36
+    },
+    {
+      "id": 16,
+      "category": "Strategy",
+      "question": "How much is Apple investing in R&D?",
+      "answer": "Based on the SEC filings data I found, here's what Apple is investing in R&D:\n\n## Apple's R&D Investment Summary\n\n**Most Recent Quarter (Q1 2026):**\n- **$10.887 billion** in Q1 2026 (ended December 27, 2025)\n- This represents **8% of total net sales** for the quarter\n- **32% increase** from $8.268 b...",
+      "passed": true,
+      "score": 0.67,
+      "found_keywords": [
+        "development",
+        "billion"
+      ],
+      "missing_keywords": [
+        "research"
+      ],
+      "response_time": 45.67
+    },
+    {
+      "id": 17,
+      "category": "Trends",
+      "question": "What is the revenue trend for Apple over the last 2 quarters?",
+      "answer": "Based on the SEC filings data I've gathered, I can now analyze Apple's revenue trend over the last 2 quarters. Here's what the data shows:\n\n## Apple Revenue Trend - Last 2 Quarters\n\n**Source: Apple SEC filings (10-Q forms)**\n\n### Latest Two Quarters:\n\n**Q1 2026 (ended December 27, 2025):**\n- Total n...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "trend",
+        "growth",
+        "quarter"
+      ],
+      "missing_keywords": [],
+      "response_time": 96.66
+    },
+    {
+      "id": 18,
+      "category": "Trends",
+      "question": "Is Apple's profitability improving or declining?",
+      "answer": "Based on my analysis of Apple's latest financial data, **Apple's profitability is clearly improving**. Here's the evidence:\n\n## Key Profitability Improvements:\n\n**Current Strong Profitability Metrics (Live Data):**\n- **Profit Margin: 27.04%** - This is exceptionally strong\n- **Gross Margin: 47.33%**...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "margin",
+        "profit"
+      ],
+      "missing_keywords": [],
+      "response_time": 39.56
+    },
+    {
+      "id": 19,
+      "category": "Investment",
+      "question": "What is the analyst recommendation for Apple stock?",
+      "answer": "Based on the live financial data, **Apple (AAPL) has a \"BUY\" recommendation from analysts**.\n\nHere are the key details:\n- **Analyst Recommendation**: BUY\n- **Price Target**: $295.44\n- **Current Price**: $247.99\n- **Upside Potential**: Approximately 19% to reach the analyst target price\n\nThe BUY reco...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "buy",
+        "analyst"
+      ],
+      "missing_keywords": [],
+      "response_time": 15.86
+    },
+    {
+      "id": 20,
+      "category": "Investment",
+      "question": "What is Apple's dividend yield?",
+      "answer": "According to the live financial data, **Apple's (AAPL) dividend yield is 0.42%**.\n\nThis is a relatively modest dividend yield, which is typical for Apple as the company has historically focused more on capital appreciation and share buybacks rather than high dividend payouts. Apple pays a quarterly ...",
+      "passed": true,
+      "score": 1.0,
+      "found_keywords": [
+        "dividend",
+        "0.42",
+        "%"
+      ],
+      "missing_keywords": [],
+      "response_time": 15.57
+    }
+  ]
+}

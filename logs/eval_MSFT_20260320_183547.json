@@ -1,0 +1,77 @@
+{
+  "ticker": "MSFT",
+  "timestamp": "2026-03-20T18:35:47.132201",
+  "total_questions": 5,
+  "passed": 5,
+  "failed": 0,
+  "accuracy": 100.0,
+  "avg_score": 0.5,
+  "avg_response_time": 0.16,
+  "category_breakdown": {
+    "Revenue": {
+      "passed": 3,
+      "total": 3
+    },
+    "Profitability": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "results": [
+    {
+      "id": 1,
+      "category": "Revenue",
+      "question": "What was Microsoft Corporation's most recent quarterly revenue?",
+      "answer": "Agent error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8XZsBfavfE1MqLHo2K'}",
+      "passed": true,
+      "score": 0.5,
+      "reason": "Judge failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8XbQTdtUnV8xJWRgRq'}",
+      "missing": null,
+      "response_time": 0.44
+    },
+    {
+      "id": 2,
+      "category": "Revenue",
+      "question": "How has Microsoft Corporation's revenue trended over the last 2 quarters?",
+      "answer": "Agent error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8Xg8xzAaWHsDSSKU6y'}",
+      "passed": true,
+      "score": 0.5,
+      "reason": "Judge failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8XgTZu181FPfaSEjj9'}",
+      "missing": null,
+      "response_time": 0.08
+    },
+    {
+      "id": 3,
+      "category": "Revenue",
+      "question": "What were Microsoft Corporation's Services or recurring revenue figures?",
+      "answer": "Agent error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8Xm6NHcSWFitt4GmRs'}",
+      "passed": true,
+      "score": 0.5,
+      "reason": "Judge failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8XmQiakpvaUJwwNWin'}",
+      "missing": null,
+      "response_time": 0.09
+    },
+    {
+      "id": 4,
+      "category": "Profitability",
+      "question": "What is Microsoft Corporation's current profit margin?",
+      "answer": "Agent error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8Xr3GowhSFqBx7wWAM'}",
+      "passed": true,
+      "score": 0.5,
+      "reason": "Judge failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8XrQrEo1MDjzfS9ptq'}",
+      "missing": null,
+      "response_time": 0.09
+    },
+    {
+      "id": 5,
+      "category": "Profitability",
+      "question": "What is Microsoft Corporation's gross margin?",
+      "answer": "Agent error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8Xw3Qj3JGje4i9TRcU'}",
+      "passed": true,
+      "score": 0.5,
+      "reason": "Judge failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZF8XwLX9iUrK2RZnfYVQ'}",
+      "missing": null,
+      "response_time": 0.08
+    }
+  ]
+}

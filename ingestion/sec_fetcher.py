@@ -115,47 +115,61 @@ def fetch_filing_text(cik: str, accession_number: str, primary_document: str) ->
 
 def fetch_company_filings(ticker: str, quarters: int = 8) -> list:
     """
-    Main function - fetches all filings for a company ticker.
-    
+    Fetches both 10-Q quarterly and 10-K annual filings.
+
+    10-Q: quarterly performance, revenue, earnings
+    10-K: annual report with geographic breakdown,
+          complete risk factors, full financial statements
+
     Args:
         ticker: Stock ticker symbol (e.g. AAPL)
-        quarters: Number of quarters to fetch
-    
+        quarters: Number of quarterly filings to fetch
+
     Returns:
         List of dictionaries with filing metadata + text content
     """
     logger.info(f"=== Starting filing fetch for {ticker} ===")
-    
+
     # Step 1 - Get CIK
     cik = get_cik(ticker)
     if not cik:
         logger.error(f"Cannot proceed - no CIK found for {ticker}")
         return []
-    
-    # Step 2 - Get filing metadata
-    filings = get_filings(cik, form_type="10-Q", count=quarters)
-    if not filings:
+
+    # Step 2 - Get quarterly filing metadata
+    quarterly = get_filings(cik, form_type="10-Q", count=quarters)
+    logger.info(f"Found {len(quarterly)} 10-Q filings")
+
+    # Step 3 - Get annual filing metadata (last 2 years)
+    annual = get_filings(cik, form_type="10-K", count=2)
+    logger.info(f"Found {len(annual)} 10-K filings")
+
+    all_filings = quarterly + annual
+
+    if not all_filings:
         logger.error(f"No filings found for {ticker}")
         return []
-    
-    # Step 3 - Download each filing text
+
+    # Step 4 - Download each filing text
     results = []
-    for filing in filings:
+    for filing in all_filings:
         text = fetch_filing_text(
             cik,
             filing["accession_number"],
             filing["primary_document"]
         )
-        
+
         if text:
             filing["text"] = text
             filing["ticker"] = ticker.upper()
             results.append(filing)
-        
-        # Be polite to SEC servers - wait between requests
+
+        # Be polite to SEC servers
         time.sleep(0.5)
-    
-    logger.info(f"=== Completed: fetched {len(results)} filings for {ticker} ===")
+
+    logger.info(f"=== Completed: fetched {len(results)} filings "
+               f"({len(quarterly)} quarterly + {len(annual)} annual) "
+               f"for {ticker} ===")
     return results
 
 

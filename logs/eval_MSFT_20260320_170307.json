@@ -1,0 +1,77 @@
+{
+  "ticker": "MSFT",
+  "timestamp": "2026-03-20T17:03:07.250260",
+  "total_questions": 5,
+  "passed": 2,
+  "failed": 3,
+  "accuracy": 40.0,
+  "avg_score": 0.48,
+  "avg_response_time": 55.75,
+  "category_breakdown": {
+    "Revenue": {
+      "passed": 0,
+      "total": 3
+    },
+    "Profitability": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "results": [
+    {
+      "id": 1,
+      "category": "Revenue",
+      "question": "What was Microsoft Corporation's most recent quarterly revenue?",
+      "answer": "Perfect! I found Microsoft's most recent quarterly revenue. Based on the SEC filings, here are the details:\n\n**Microsoft Corporation's Most Recent Quarterly Revenue:**\n\nAccording to Microsoft's 10-Q filing dated January 29, 2026, Microsoft's most recent quarterly revenue for the **second quarter of ...",
+      "passed": false,
+      "score": 0.15,
+      "reason": "The answer contains fabricated future data (January 29, 2026 filing date and December 31, 2025 quarter end are in the future from the knowledge cutoff perspective, and these specific numbers cannot be verified as real Microsoft financial data).",
+      "missing": "Verification of actual, current Microsoft quarterly revenue from authentic SEC filings; the answer appears to present plausible-sounding but unverified financial figures that may be hallucinated.",
+      "response_time": 31.67
+    },
+    {
+      "id": 2,
+      "category": "Revenue",
+      "question": "How has Microsoft Corporation's revenue trended over the last 2 quarters?",
+      "answer": "Based on the SEC filings I've reviewed, I can now provide you with Microsoft's revenue trend over the last 2 quarters. Here's the analysis:\n\n## Microsoft Corporation Revenue Trends - Last 2 Quarters\n\n**Source: Microsoft SEC 10-Q filings**\n\n### Most Recent 2 Quarters Revenue:\n\n**Q2 2026 (Quarter ende...",
+      "passed": false,
+      "score": 0.15,
+      "reason": "The answer uses future-dated quarters (Q1-Q2 2026, ending in 2025) that do not exist as of the knowledge cutoff, making all provided numbers fabricated and unreliable, which is a critical credibility failure despite otherwise good structure and specificity.",
+      "missing": "Actual current revenue data for real quarters; acknowledgment that the claimed SEC filing dates are in the future; verification of whether these figures correspond to any real Microsoft financial period",
+      "response_time": 72.7
+    },
+    {
+      "id": 3,
+      "category": "Revenue",
+      "question": "What were Microsoft Corporation's Services or recurring revenue figures?",
+      "answer": "Based on the SEC filings search results, I can provide you with Microsoft Corporation's Services and recurring revenue figures. Here's what I found:\n\n## Microsoft's Services and Recurring Revenue Overview\n\n**Source: Microsoft SEC filings (10-Q forms from 2025-2026)**\n\n### Key Services/Recurring Reve...",
+      "passed": false,
+      "score": 0.35,
+      "reason": "While the answer provides some relevant segment information and attempts to be comprehensive, it lacks specific recurring revenue figures, contains problematic dating (referencing Q1 2025 and 2025-2026 filings when current date context suggests this is anachronistic), and fails to provide clear, isolated recurring revenue totals that directly answer the question about 'Services or recurring revenue figures.'",
+      "missing": "Specific, clearly-labeled recurring revenue dollar amounts broken out separately; accurate fiscal period dates; consolidated total recurring revenue figures; verifiable citation of actual SEC filing data rather than general segment descriptions; clarification of what constitutes 'recurring revenue' versus total segment revenue in Microsoft's reporting.",
+      "response_time": 128.39
+    },
+    {
+      "id": 4,
+      "category": "Profitability",
+      "question": "What is Microsoft Corporation's current profit margin?",
+      "answer": "Based on the live financial data, **Microsoft Corporation's current profit margin is 39.04%** (trailing twelve months).\n\nThis is an exceptionally strong profit margin, indicating that Microsoft retains about 39 cents of every dollar in revenue as net profit. For context, this data also shows that Mi...",
+      "passed": true,
+      "score": 0.92,
+      "reason": "The answer directly addresses the question with a specific profit margin figure (39.04%), provides supporting context including gross margin and revenue data, explains what the metric means, and offers business model context, though the source attribution is vague and the data currency is not explicitly confirmed.",
+      "missing": "Explicit statement of when this data was last updated and which specific quarter/year the TTM figure represents",
+      "response_time": 34.43
+    },
+    {
+      "id": 5,
+      "category": "Profitability",
+      "question": "What is Microsoft Corporation's gross margin?",
+      "answer": "Based on the live financial data, **Microsoft Corporation's gross margin is 68.59%** (trailing twelve months).\n\nThis is a very strong gross margin that reflects Microsoft's highly profitable software and cloud services business model. For context:\n- The gross margin represents the percentage of reve...",
+      "passed": true,
+      "score": 0.85,
+      "reason": "The answer directly addresses the question with a specific gross margin figure (68.59%), provides useful context about what gross margin means, and includes relevant business model explanation, though the 'live financial data' source claim cannot be independently verified and the answer could benefit from a specific reporting date.",
+      "missing": "Specific reporting period/date (e.g., Q4 2024, fiscal year 2024) and verifiable source citation would strengthen credibility",
+      "response_time": 11.58
+    }
+  ]
+}
