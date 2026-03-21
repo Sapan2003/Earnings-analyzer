@@ -209,9 +209,8 @@ def create_revenue_chart(quarterly_data: dict) -> go.Figure:
         showlegend=True,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        xaxis=dict(showgrid=True, gridcolor="rgba(128,128,128,0.3)", tickangle=45, tickfont=dict(color="#888")),
-        yaxis=dict(showgrid=True, gridcolor="rgba(128,128,128,0.3)",tickfont=dict(color="#888")),
-        font=dict(color="#888")
+        xaxis=dict(showgrid=True, gridcolor="rgba(128,128,128,0.2)", tickangle=45),
+        yaxis=dict(showgrid=True, gridcolor="rgba(128,128,128,0.2)")
     )
 
     return fig
@@ -253,8 +252,7 @@ def create_margins_chart(metrics: dict) -> go.Figure:
         height=300,
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        yaxis=dict(showgrid=True, gridcolor="rgba(128,128,128,0.3)",tickfont=dict(color="#888")),
-        font=dict(color="#888")
+        yaxis=dict(showgrid=True, gridcolor="rgba(128,128,128,0.2)")
     )
 
     return fig
