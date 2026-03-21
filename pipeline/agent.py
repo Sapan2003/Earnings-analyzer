@@ -12,13 +12,37 @@ from utils.logger import get_logger
 load_dotenv()
 logger = get_logger("agent", "pipeline.log")
 
-# Initialize Claude via LangChain
-llm = ChatAnthropic(
+# Fast model for simple factual questions
+llm_fast = ChatAnthropic(
+    model="claude-haiku-4-5-20251001",
+    max_tokens=500,
+    anthropic_api_key=os.getenv("ANTHROPIC_API_KEY")
+)
+
+# Powerful model for complex analysis
+llm_powerful = ChatAnthropic(
     model="claude-sonnet-4-20250514",
     max_tokens=1500,
     anthropic_api_key=os.getenv("ANTHROPIC_API_KEY")
 )
 
+def get_llm(question: str):
+    """
+    Routes to appropriate model based on question complexity.
+    Simple factual questions use Haiku (fast, cheap).
+    Complex analysis questions use Sonnet (powerful).
+    """
+    simple_keywords = [
+        "price", "pe ratio", "market cap",
+        "dividend", "recommendation", "eps",
+        "52 week", "current", "ratio", "yield"
+    ]
+    question_lower = question.lower()
+    if any(kw in question_lower for kw in simple_keywords):
+        logger.info("Routing to Haiku (simple question)")
+        return llm_fast
+    logger.info("Routing to Sonnet (complex question)")
+    return llm_powerful
 
 # ── TOOL 1: SEC Filings RAG ──────────────────────────────────────
 @tool
@@ -116,10 +140,7 @@ tools = [search_sec_filings,
          get_live_financial_data,
          search_financial_news]
 
-agent_executor = create_react_agent(
-    llm,
-    tools,
-    prompt="""You are an expert financial analyst with access
+AGENT_PROMPT = """You are an expert financial analyst with access
 to three powerful tools:
 
 1. search_sec_filings: Search through official SEC filings and
@@ -131,27 +152,29 @@ to three powerful tools:
 
 Always cite which source each piece of information came from.
 Be precise with numbers and include units."""
-)
+
 
 
 def run_agent(question: str) -> dict:
     """
-    Main function - runs the LangChain agent with
-    all 3 tools available.
-
-    Args:
-        question: User's financial question
-
-    Returns:
-        Dictionary with answer and tool usage
+    Main function - runs the LangChain agent.
+    Dynamically selects model based on question complexity.
     """
     logger.info(f"Agent query: '{question}'")
 
     try:
-        result = agent_executor.invoke(
-            {"messages": [{"role": "user", "content": question}]}
+        # Pick model based on question complexity
+        llm = get_llm(question)
+
+        # Create agent with selected model
+        agent = create_react_agent(llm, tools,prompt=AGENT_PROMPT)
+
+        result = agent.invoke(
+            {"messages": [{"role": "user",
+                          "content": question}]},
+            config={"recursion_limit": 10}
         )
-        # Get last message which is the final answer
+
         answer = result["messages"][-1].content
         logger.info("Agent completed successfully")
 
