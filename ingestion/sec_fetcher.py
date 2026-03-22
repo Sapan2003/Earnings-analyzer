@@ -1,5 +1,4 @@
 import requests
-import json
 import time
 from utils.logger import get_logger
 
@@ -15,22 +14,22 @@ def get_cik(ticker: str) -> str | None:
     CIK is the unique ID SEC uses to identify every company.
     """
     logger.info(f"Looking up CIK for ticker: {ticker}")
-    
+
     url = "https://www.sec.gov/files/company_tickers.json"
-    
+
     try:
         response = requests.get(url, headers=HEADERS)
         data = response.json()
-        
+
         for entry in data.values():
             if entry["ticker"].upper() == ticker.upper():
                 cik = str(entry["cik_str"]).zfill(10)
                 logger.info(f"Found CIK for {ticker}: {cik}")
                 return cik
-        
+
         logger.warning(f"No CIK found for ticker: {ticker}")
         return None
-    
+
     except Exception as e:
         logger.error(f"Failed to get CIK for {ticker}: {e}")
         return None
@@ -39,25 +38,25 @@ def get_cik(ticker: str) -> str | None:
 def get_filings(cik: str, form_type: str = "10-Q", count: int = 8) -> list:
     """
     Fetches the most recent filings for a company.
-    
+
     Args:
         cik: Company CIK number
         form_type: Type of filing (10-Q or 10-K)
         count: Number of filings to fetch
-    
+
     Returns:
         List of filing metadata dictionaries
     """
     logger.info(f"Fetching {count} {form_type} filings for CIK: {cik}")
-    
+
     url = f"https://data.sec.gov/submissions/CIK{cik}.json"
-    
+
     try:
         response = requests.get(url, headers=HEADERS)
         data = response.json()
-        
+
         filings = data["filings"]["recent"]
-        
+
         results = []
         for i, form in enumerate(filings["form"]):
             if form == form_type:
@@ -68,13 +67,13 @@ def get_filings(cik: str, form_type: str = "10-Q", count: int = 8) -> list:
                     "primary_document": filings["primaryDocument"][i],
                     "cik": cik
                 })
-            
+
             if len(results) == count:
                 break
-        
+
         logger.info(f"Found {len(results)} {form_type} filings")
         return results
-    
+
     except Exception as e:
         logger.error(f"Failed to fetch filings for CIK {cik}: {e}")
         return []
@@ -83,31 +82,31 @@ def get_filings(cik: str, form_type: str = "10-Q", count: int = 8) -> list:
 def fetch_filing_text(cik: str, accession_number: str, primary_document: str) -> str | None:
     """
     Downloads the actual text content of a filing.
-    
+
     Args:
         cik: Company CIK number
         accession_number: Filing accession number
         primary_document: Primary document filename
-    
+
     Returns:
         Raw text content of the filing
     """
     accession_clean = accession_number.replace("-", "")
     url = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{accession_clean}/{primary_document}"
-    
+
     logger.info(f"Downloading filing: {primary_document}")
     logger.debug(f"URL: {url}")
-    
+
     try:
         response = requests.get(url, headers=HEADERS)
-        
+
         if response.status_code == 200:
             logger.info(f"Successfully downloaded: {primary_document}")
             return response.text
         else:
             logger.warning(f"Failed to download {primary_document}: status {response.status_code}")
             return None
-    
+
     except Exception as e:
         logger.error(f"Failed to download filing: {e}")
         return None
@@ -185,3 +184,4 @@ if __name__ == "__main__":
                   f"text length: {len(f['text'])} chars")
     else:
         print(f"No filings fetched for {ticker}")
+
