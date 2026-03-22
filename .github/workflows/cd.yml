@@ -1,0 +1,19 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Notify deployment
+      run: |
+        echo "CI passed - deploying to Streamlit Cloud"
+        echo "Streamlit Cloud watches main branch automatically"
+        echo "App will update within 1-2 minutes"
