@@ -96,7 +96,7 @@ def get_quarterly_financials(ticker: str) -> dict | None:
                     if val is not None:
                         try:
                             revenue = float(val)
-                        except:
+                        except Exception:
                             revenue = None
                         break
             result["revenue"].append(revenue)
@@ -110,7 +110,7 @@ def get_quarterly_financials(ticker: str) -> dict | None:
                     if val is not None:
                         try:
                             net_income = float(val)
-                        except:
+                        except Exception:
                             net_income = None
                         break
             result["net_income"].append(net_income)
@@ -124,7 +124,7 @@ def get_quarterly_financials(ticker: str) -> dict | None:
                     if val is not None:
                         try:
                             gross_profit = float(val)
-                        except:
+                        except Exception:
                             gross_profit = None
                         break
             result["gross_profit"].append(gross_profit)
@@ -160,7 +160,7 @@ def format_metrics_for_llm(metrics: dict) -> str:
             if billions:
                 return f"{prefix}{float(val)/1e9:.2f}B{suffix}"
             return f"{prefix}{float(val):.2f}{suffix}"
-        except:
+        except Exception:
             return str(val)
 
     def fmt_percent(val, already_decimal=True):
@@ -170,11 +170,11 @@ def format_metrics_for_llm(metrics: dict) -> str:
             if already_decimal:
                 return f"{float(val)*100:.2f}%"
             return f"{float(val):.2f}%"
-        except:
+        except Exception:
             return str(val)
-        
+
     text = f"""
-LIVE FINANCIAL METRICS FOR {metrics['ticker']} 
+LIVE FINANCIAL METRICS FOR {metrics['ticker']}
 ({metrics['company_name']}):
 
 Price & Valuation:
@@ -184,8 +184,8 @@ Price & Valuation:
 - Forward P/E: {fmt_number(metrics['forward_pe'], prefix='')}
 - EPS (TTM): {fmt_number(metrics['eps'])}
 - Analyst Target: {fmt_number(metrics['analyst_target'])}
-- Recommendation: {metrics['recommendation'].upper() 
-                   if metrics['recommendation'] != 'N/A' 
+- Recommendation: {metrics['recommendation'].upper()
+                   if metrics['recommendation'] != 'N/A'
                    else 'N/A'}
 
 Revenue & Profitability:
