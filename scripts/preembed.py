@@ -1,7 +1,6 @@
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from ingestion.embedder import embed_company, get_chroma_client, get_collection
 from utils.logger import get_logger
 
