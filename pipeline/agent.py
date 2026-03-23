@@ -172,11 +172,11 @@ def run_agent(question: str) -> dict:
         llm = get_llm(question)
 
         # Create agent with selected model
-        agent = create_react_agent(llm, tools,prompt=AGENT_PROMPT)
+        agent = create_react_agent(llm, tools, prompt=AGENT_PROMPT)
 
         result = agent.invoke(
             {"messages": [{"role": "user",
-                          "content": question}]},
+                          "content": question}]}, 
             config={"recursion_limit": 10}
         )
 

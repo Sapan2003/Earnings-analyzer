@@ -81,4 +81,3 @@ def preembed_all(quarters: int = 8):
 if __name__ == "__main__":
     quarters = int(sys.argv[1]) if len(sys.argv) > 1 else 8
     preembed_all(quarters=quarters)
-    

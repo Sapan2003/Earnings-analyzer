@@ -94,8 +94,8 @@ def clean_html(raw_text: str) -> str:
         # Combine narrative + tables
         if tables_text:
             combined = (narrative_text 
-                        +"\n\nFINANCIAL TABLES:\n" 
-                        +tables_text)
+                        + "\n\nFINANCIAL TABLES:\n" 
+                        + tables_text) 
         else:
             combined = narrative_text
 
