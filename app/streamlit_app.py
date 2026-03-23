@@ -302,6 +302,7 @@ with st.sidebar:
         metrics, quarterly = load_financial_data(ticker_input)
         st.session_state.metrics = metrics
         st.session_state.quarterly_data = quarterly
+        st.rerun()
 
     st.markdown("---")
 
