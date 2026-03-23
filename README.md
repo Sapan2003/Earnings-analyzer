@@ -9,6 +9,16 @@
 ![Claude](https://img.shields.io/badge/Claude-Sonnet_4.6-orange)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-purple)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-red)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://earnings-call-analyzer-ai.streamlit.app)
+[![CI Pipeline](https://github.com/Sapan2003/Earnings-Call-Analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Sapan2003/Earnings-Call-Analyzer/actions)
+
+---
+## 🌐 Live Demo
+
+**[earnings-call-analyzer-ai.streamlit.app](https://earnings-call-analyzer-ai.streamlit.app)**
+
+Try it with any blue chip company:
+`AAPL` `MSFT` `GOOGL` `AMZN` `TSLA` `META` `NVDA` `JPM` `BAC` `GS`
 
 ---
 
@@ -60,7 +70,7 @@ User Question
 | Embeddings | HuggingFace all-MiniLM-L6-v2 | Text vectorization |
 | Financial Data | yFinance | Live market metrics |
 | SEC Filings | SEC EDGAR API | 10-Q + 10-K documents |
-| Backend | FastAPI | REST API endpoints |
+| Backend | FastAPI | REST API endpoints (local development) |
 | Frontend | Streamlit | Interactive UI |
 | Deployment | Streamlit Cloud | Free hosting |
 | Logging | Python logging | Full pipeline observability |
@@ -156,8 +166,8 @@ earnings-call-analyzer/
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/Sapan2003/Earnings-analyzer.git
-cd Earnings-analyzer
+git clone https://github.com/Sapan2003/Earnings-Call-Analyzer.git
+cd Earnings-Call-Analyzer
 ```
 
 **2. Create virtual environment**
@@ -248,9 +258,10 @@ in SEC filing structure.
 
 Root cause: Each company uses different labels for revenue:
 | Company | Revenue Label |
-- Apple: "Total net sales"
-- Microsoft: "Total revenue"
-- Google: "Revenues"
+|---|---|
+| Apple | "Total net sales" |
+| Microsoft | "Total revenue" |
+| Google | "Revenues" |
 
 Planned fix: Add company-specific extraction patterns.
 
