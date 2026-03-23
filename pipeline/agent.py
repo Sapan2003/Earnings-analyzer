@@ -176,7 +176,7 @@ def run_agent(question: str) -> dict:
 
         result = agent.invoke(
             {"messages": [{"role": "user",
-                          "content": question}]}, 
+                          "content": question}]},
             config={"recursion_limit": 10}
         )
 
