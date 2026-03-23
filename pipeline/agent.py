@@ -145,6 +145,7 @@ tools = [search_sec_filings,
          get_live_financial_data,
          search_financial_news]
 
+
 AGENT_PROMPT = """You are an expert financial analyst with access
 to three powerful tools:
 
@@ -157,7 +158,6 @@ to three powerful tools:
 
 Always cite which source each piece of information came from.
 Be precise with numbers and include units."""
-
 
 
 def run_agent(question: str) -> dict:
@@ -215,4 +215,3 @@ if __name__ == "__main__":
     print("FINAL ANSWER:")
     print("=" * 60)
     print(result["answer"])
-    

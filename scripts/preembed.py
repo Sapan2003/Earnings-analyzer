@@ -3,8 +3,8 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ingestion.embedder import embed_company, get_chroma_client, get_collection
-from utils.logger import get_logger
+from ingestion.embedder import embed_company, get_chroma_client, get_collection  # noqa: E402
+from utils.logger import get_logger  # noqa: E402
 
 logger = get_logger("preembed", "ingestion.log")
 
