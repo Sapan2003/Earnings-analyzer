@@ -46,9 +46,9 @@ def get_llm(question: str):
     return llm_powerful
 
 # ── TOOL 1: SEC Filings RAG ──────────────────────────────────────
+
+
 @tool
-
-
 def search_sec_filings(query: str) -> str:
     """
     Search through SEC filings and earnings transcripts
@@ -84,9 +84,9 @@ def search_sec_filings(query: str) -> str:
 
 
 # ── TOOL 2: Live Financial Data ──────────────────────────────────
+
+
 @tool
-
-
 def get_live_financial_data(ticker: str) -> str:
     """
     Fetch live financial metrics for a publicly traded company.
@@ -116,9 +116,8 @@ def get_live_financial_data(ticker: str) -> str:
 # ── TOOL 3: Web Search ───────────────────────────────────────────
 search = DuckDuckGoSearchRun()
 
+
 @tool
-
-
 def search_financial_news(query: str) -> str:
     """
     Search the web for latest financial news and analysis.

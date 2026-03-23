@@ -212,4 +212,3 @@ if __name__ == "__main__":
     if "tokens_used" in result:
         print(f"Tokens used: {result['tokens_used']['total']}")
         print(f"Estimated cost: ${result['tokens_used']['total'] * 0.000003:.6f}")
-        

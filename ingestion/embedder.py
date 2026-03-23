@@ -12,7 +12,7 @@ COLLECTION_NAME = "earnings_filings"
 def get_chroma_client():
     """
     Creates and returns a persistent ChromaDB client.
-    Persistent means data is saved to disk - 
+    Persistent means data is saved to disk -
     so you don't re-embed every time you restart.
     """
     logger.info(f"Connecting to ChromaDB at {CHROMA_PATH}")
@@ -175,4 +175,3 @@ if __name__ == "__main__":
     total = embed_company(ticker, quarters=quarters)
     print(f"Embedding complete! Total chunks embedded: {total}")
     get_collection_stats()
-    

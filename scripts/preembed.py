@@ -1,6 +1,8 @@
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import sys
 import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from ingestion.embedder import embed_company, get_chroma_client, get_collection
 from utils.logger import get_logger
 
@@ -79,3 +81,4 @@ def preembed_all(quarters: int = 8):
 if __name__ == "__main__":
     quarters = int(sys.argv[1]) if len(sys.argv) > 1 else 8
     preembed_all(quarters=quarters)
+    

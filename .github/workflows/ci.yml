@@ -27,8 +27,7 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        flake8 . --count --max-line-length=100 \
-        --exclude=venv,data,logs,__pycache__,.github
+        flake8 .
 
     - name: Run unit tests
       env:

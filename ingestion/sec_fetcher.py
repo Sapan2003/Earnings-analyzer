@@ -8,6 +8,7 @@ HEADERS = {
     "User-Agent": "earnings-analyzer sapanparikh13@gmail.com"
 }
 
+
 def get_cik(ticker: str) -> str | None:
     """
     Converts a stock ticker (e.g. AAPL) to a CIK number.
@@ -184,4 +185,3 @@ if __name__ == "__main__":
                   f"text length: {len(f['text'])} chars")
     else:
         print(f"No filings fetched for {ticker}")
-
