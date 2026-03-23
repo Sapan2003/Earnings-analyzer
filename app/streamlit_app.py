@@ -299,11 +299,13 @@ with st.sidebar:
             ingest_ticker(ticker_input, quarters)
 
         # Load financial metrics
-        metrics, quarterly = load_financial_data(ticker_input)
-        st.session_state.metrics = metrics
-        st.session_state.quarterly_data = quarterly
-        st.rerun()
-
+        try:
+            metrics, quarterly = load_financial_data(ticker_input)
+            st.session_state.metrics = metrics
+            st.session_state.quarterly_data = quarterly
+        except Exception as e:
+            st.error(f"Failed to load financial data: {e}")
+            
     st.markdown("---")
 
     # Example questions
