@@ -405,8 +405,12 @@ if st.session_state.current_ticker and st.session_state.metrics:
 
     with col5:
         rec = metrics.get("recommendation", "N/A")
-        st.metric("Analyst Rec",
-                 rec.upper() if rec != "N/A" else "N/A")
+        if rec != "N/A":
+            # Convert STRONG_BUY → Strong Buy
+            rec_formatted = rec.replace("_", " ").title()
+        else:
+            rec_formatted = "N/A"
+        st.metric("Analyst Rec", rec_formatted)
 
     st.markdown("---")
 
