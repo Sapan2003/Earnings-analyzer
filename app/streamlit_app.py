@@ -161,7 +161,6 @@ def ingest_ticker(ticker: str, quarters: int = 8):
 def load_financial_data(ticker: str):
     """Load live financial metrics and quarterly data.
        Cached for 1 hour to avoid rate limiting."""
-       
     metrics = get_financial_metrics(ticker)
     quarterly = get_quarterly_financials(ticker)
     return metrics, quarterly
@@ -303,14 +302,14 @@ with st.sidebar:
         # Load financial metrics
         with st.spinner(f"Loading live financial data for {ticker_input}..."):
             metrics, quarterly = load_financial_data(ticker_input)
-            
+
         if metrics:
             st.session_state.metrics = metrics
             st.session_state.quarterly_data = quarterly
         else:
             st.warning("Live market data temporarily unavailable. "
                       "Try again in a few minutes.")
-            
+
     st.markdown("---")
 
     # Example questions
