@@ -117,6 +117,22 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# ── COLD START WARNING ───────────────────────────────────────────
+# Shows only on first load, dismissed automatically after 5 seconds
+# Handles the case where the app wakes from Streamlit Cloud sleep mode
+
+if "app_loaded" not in st.session_state:
+    st.session_state.app_loaded = False
+
+if not st.session_state.app_loaded:
+    cold_start_msg = st.info(
+        "⏳ App is warming up — this takes about 15-20 seconds on first load. "
+        "Please wait while the AI models initialize.",
+        icon="ℹ️"
+    )
+    st.session_state.app_loaded = True
+else:
+    cold_start_msg = None
 
 # ── SESSION STATE ────────────────────────────────────────────────
 if "messages" not in st.session_state:
